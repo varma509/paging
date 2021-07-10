@@ -22,5 +22,18 @@
             android:name="owner"
             app:nullable="false"
             app:argType="com.eutor.core.data.models.search.Owner" />
+        <action
+            android:id="@+id/action_details_to_webView2"
+            app:destination="@id/webView2" />
     </fragment>
+    <fragment
+        android:id="@+id/webView2"
+        android:name="com.storemate.storemate.ui.details.WebViewFragment"
+        tools:layout="@layout/fragment_web_view"
+        android:label="WebView" >
+        <argument
+            android:name="data"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

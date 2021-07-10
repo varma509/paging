@@ -74,17 +74,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(),
                 launchOnLifecycleScope {
                     loadStateFlow.distinctUntilChangedBy { it.refresh }
                         .filter { it.refresh is LoadState.NotLoading }
-                        .collect { binding.list.scrollToPosition(0) }
+                        .collectLatest { binding.list.scrollToPosition(0) }
                 }
             }
-        binding.searchET.setText("Android")
+        binding.searchET.setText("Paging")
 
 
            adapter.addLoadStateListener { loadState ->
 
             // show empty list
-            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(isListEmpty)
+          /*  val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            showEmptyList(isListEmpty)*/
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error

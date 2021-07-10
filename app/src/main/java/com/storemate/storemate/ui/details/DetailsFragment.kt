@@ -53,8 +53,8 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailViewModel>(),
         get() =true
 
     override fun onItemClick(item: String, position: Int) {
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(item)
-        startActivity(i)
+        findNavController().navigate(
+            DetailsFragmentDirections.actionDetailsToWebView2(item)
+        )
     }
 }
