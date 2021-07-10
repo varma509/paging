@@ -9,5 +9,18 @@
         android:id="@+id/searchFragment"
         android:name="com.storemate.storemate.ui.search.SearchFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action__to_Detail"
+            app:destination="@id/details" />
+    </fragment>
+    <fragment
+        android:id="@+id/details"
+        android:name="com.storemate.storemate.ui.details.DetailsFragment"
+        tools:layout="@layout/details_fragment" >
+        <argument
+            android:name="owner"
+            app:nullable="false"
+            app:argType="com.eutor.core.data.models.search.Owner" />
+    </fragment>
 </navigation>

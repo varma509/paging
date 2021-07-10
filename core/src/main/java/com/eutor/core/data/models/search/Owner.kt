@@ -1,6 +1,7 @@
 package com.eutor.core.data.models.search
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Owner(
     @SerializedName("avatar_url")
@@ -39,4 +40,4 @@ data class Owner(
     val type: String,
     @SerializedName("url")
     val url: String
-)
+):Serializable

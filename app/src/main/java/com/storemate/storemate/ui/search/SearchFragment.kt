@@ -2,12 +2,15 @@ package com.storemate.storemate.ui.search
 
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import com.eutor.core.base.BaseFragment
 
 
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import com.eutor.core.data.models.search.SearchItem
@@ -50,7 +53,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(),
 
     private val onItemClickListener = object : OnItemClickListener<SearchItem> {
         override fun onItemClick(item: SearchItem, position: Int) {
-            Toast.makeText(requireContext(), item.id.toString(), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(
+                SearchFragmentDirections.actionToDetail(item.owner)
+            )
         }
     }
 
