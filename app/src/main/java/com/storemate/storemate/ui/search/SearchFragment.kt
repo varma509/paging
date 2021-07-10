@@ -82,9 +82,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(),
 
            adapter.addLoadStateListener { loadState ->
 
-            // show empty list
-          /*  val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
-            showEmptyList(isListEmpty)*/
+         /*   // show empty list
+               val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+               showEmptyList(isListEmpty)*/
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
@@ -115,6 +115,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(),
       searchJob=  lifecycleScope.launch {
             data.collectLatest{ adapter.submitData(it)  }
         }
+
     }
 
     private fun showEmptyList(show: Boolean) {
