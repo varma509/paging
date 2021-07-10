@@ -8,15 +8,22 @@ import com.eutor.core.base.BaseFragment
 
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.eutor.core.data.models.search.SearchItem
 import com.eutor.core.databinding.DetailsFragmentBinding
+import com.eutor.core.listener.OnItemClickListener
 
 import com.storemate.storemate.R
 import com.storemate.storemate.databinding.FragmentSearchBinding
+import com.storemate.storemate.ui.search.SearchFragmentDirections
 import com.storemate.storemate.ui.search.SearchViewModel
+import android.content.Intent
+import android.net.Uri
+
 
 @AndroidEntryPoint
-class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailViewModel>(){
+class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailViewModel>(),OnItemClickListener<String>{
 
     private val detailViewModel: DetailViewModel by viewModels()
     private val args: DetailsFragmentArgs by navArgs()
@@ -33,8 +40,10 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailViewModel>(){
     }*/
 
     override fun bindVM(binding: DetailsFragmentBinding, vm: DetailViewModel) {
+
         with(binding) {
             details = args.owner
+            binding.listener=this@DetailsFragment
         }
     }
 
@@ -42,4 +51,10 @@ class DetailsFragment : BaseFragment<DetailsFragmentBinding, DetailViewModel>(){
         get() = "Details"
     override val arrow: Boolean
         get() =true
+
+    override fun onItemClick(item: String, position: Int) {
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(item)
+        startActivity(i)
+    }
 }
